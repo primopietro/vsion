@@ -2,12 +2,14 @@
 <div id="app">
     <h1>Vsion</h1>
     <transaction-edit v-if="edit" v-bind:transaction="edit" v-on:cancel="edit=null" v-on:submit="edit=null"></transaction-edit>
+    
+    <div id="insert-box" class="box">
+        <transaction-insert></transaction-insert>
+    </div>
+
     <div id="list-box" class="box">
       <h3>Transactions</h3>
         <transaction-list v-on:edit="editTransaction"></transaction-list>
-    </div>
-    <div id="insert-box" class="box">
-        <transaction-insert></transaction-insert>
     </div>
 </div>
 </template>
