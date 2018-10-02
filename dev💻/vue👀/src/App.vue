@@ -1,22 +1,24 @@
 <template>
 <div id="app">
     <h1>Vsion</h1>
-    <hero-edit v-if="edit" v-bind:hero="edit" v-on:cancel="edit=null" v-on:submit="edit=null"></hero-edit>
+    <transaction-edit v-if="edit" v-bind:transaction="edit" v-on:cancel="edit=null" v-on:submit="edit=null"></transaction-edit>
     <div id="list-box" class="box">
       <h3>Transactions</h3>
-        <heroes-list v-on:edit="editHero"></heroes-list>
+        <transaction-list v-on:edit="editTransaction"></transaction-list>
     </div>
     <div id="insert-box" class="box">
-        <hero-insert></hero-insert>
+        <transaction-insert></transaction-insert>
     </div>
 </div>
 </template>
 
 <script>
-import * as Database from './database/Database';
-import HeroesList from './components/heroes-list.vue';
-import HeroInsert from './components/hero-insert.vue';
-import HeroEdit from './components/hero-edit.vue';
+
+import * as DatabaseTransactions from './database/DatabaseTransactions';
+import TransactionList from './components/transaction/list.vue';
+import TransactionInsert from './components/transaction/insert.vue';
+import TransactionEdit from './components/transaction/edit.vue';
+
 export default {
     name: 'app',
     data() {
@@ -25,8 +27,8 @@ export default {
         }
     },
     methods: {
-      editHero(hero){
-        this.edit = hero;
+      editTransaction(transaction){
+        this.edit = transaction;
       }
     }
 }
