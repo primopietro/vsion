@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-    <h1>RxDB - vuejs</h1>
+    <h1>Vsion</h1>
     <hero-edit v-if="edit" v-bind:hero="edit" v-on:cancel="edit=null" v-on:submit="edit=null"></hero-edit>
     <div id="list-box" class="box">
-      <h3>Heroes</h3>
+      <h3>Transactions</h3>
         <heroes-list v-on:edit="editHero"></heroes-list>
     </div>
     <div id="insert-box" class="box">
