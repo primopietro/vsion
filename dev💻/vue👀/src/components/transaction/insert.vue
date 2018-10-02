@@ -34,7 +34,7 @@ export default Vue.component('transaction-insert', {
               maxHP: randomInt(100, 1000)
           }
           console.dir(obj);
-          await db.heroes.insert(obj);
+          await db.transactions.insert(obj);
           console.log('Inserted new hero: ' + this.name);
 
           this.name = '';

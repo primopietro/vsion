@@ -105,7 +105,7 @@ const db = await RxDB.create({
   });                                                       // create database
 
 await db.collection({name: 'heroes', schema: mySchema});    // create collection
-db.heroes.insert({ name: 'Bob' });                          // insert document
+db.transactions.insert({ name: 'Bob' });                          // insert document
 ```
 
 </details>
@@ -165,7 +165,7 @@ This makes it easy to always show the real-time database-state in the dom withou
 </summary>
 
 ```javascript
-db.heroes
+db.transactions
   .find()
   .sort('name')
   .$ // <- returns observable of query

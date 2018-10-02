@@ -44,7 +44,7 @@ const collection = await db.collection({
   name: 'heroes',
   schema: mySchema
 });
-const collection2 = db.heroes;
+const collection2 = db.transactions;
 // or
 // const collection2 = db['heroes']
 

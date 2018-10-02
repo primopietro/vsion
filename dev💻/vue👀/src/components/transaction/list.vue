@@ -35,7 +35,7 @@ export default Vue.component('transaction-list', {
     mounted: async function() {
         const db = await Database.get();
         this.subs.push(
-            db.heroes
+            db.transactions
             .find().$
             .pipe(
                 filter(x => x != null)

@@ -4,7 +4,7 @@ RxDB.plugin(require('pouchdb-adapter-idb'));
 RxDB.plugin(require('pouchdb-adapter-http')); //enable syncing over http
 
 const collections = [{
-    name: 'heroes',
+    name: 'transactions',
     schema: require('./HeroSchema.js').default,
     methods: {
         hpPercent() {
@@ -39,7 +39,7 @@ const _create = async function() {
     console.log('DatabaseService: creating database..');
     await clearPrev();
     const db = await RxDB.create({
-        name: 'heroesreactdb',
+        name: 'transactionsreactdb' + new Date().getDate(),
         adapter: 'idb',
         queryChangeDetection: true,
         password: 'myLongAndStupidPassword'
@@ -60,9 +60,9 @@ const _create = async function() {
 
     // hooks
     console.log('DatabaseService: add hooks');
-    db.collections.heroes.preInsert(function(docObj) {
+    db.collections.transactions.preInsert(function(docObj) {
         const color = docObj.color;
-        return db.collections.heroes.findOne({
+        return db.collections.transactions.findOne({
             color
         }).exec().then(has => {
             if (has !== null) {
@@ -75,8 +75,8 @@ const _create = async function() {
 
     // sync
     console.log('DatabaseService: sync');
-    db.heroes.sync({
-        remote: syncURL + 'heroes/'
+    db.transactions.sync({
+        remote: syncURL + 'transactions/'
     });
 
     return db;

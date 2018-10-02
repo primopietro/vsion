@@ -22,7 +22,7 @@
 
 <script>
 import Vue from 'vue';
-import * as Database from '../../database/Database';
+import * as Database from '../../database/DatabaseTransactions';
 import {
     skip
 } from 'rxjs/operators';
