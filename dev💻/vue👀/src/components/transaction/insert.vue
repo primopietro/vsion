@@ -3,7 +3,7 @@
     <form v-on:submit.prevent="onSubmit" name="insertForm">
         <input v-model="name" autocomplete="off" type="text" name="name" placeholder="Transaction name" />
         <br/>
-        <input v-model="color" autocomplete="off" type="text" name="color" placeholder="Value" />
+        <input v-model="hp" autocomplete="off" type="text" name="hp" placeholder="Value" />
         <br/>
         <button>Add transaction</button>
     </form>
@@ -19,7 +19,7 @@ export default Vue.component('transaction-insert', {
   data: () => {
       return {
           name: '',
-          color: ''
+          hp: 0
       };
   },
   methods: {
@@ -29,16 +29,17 @@ export default Vue.component('transaction-insert', {
           const db = await Database.get();
           const obj = {
               name: this.name,
-              color: this.color,
-              hp: 100,
+              hp: parseFloat(this.hp),
+              color:"blue",
               maxHP: randomInt(100, 1000)
           }
+
           console.dir(obj);
           await db.transactions.insert(obj);
           console.log('Inserted new hero: ' + this.name);
 
           this.name = '';
-          this.color = '';
+          this.hp = 0;
       }
   }
 });
@@ -58,10 +59,10 @@ export default Vue.component('transaction-insert', {
       outline: none;
   }
   button{
-      background-color: #009688;
+      background-hp: #009688;
       outline: none;
       border: none;
-      color: white;
+      hp: white;
       font-size: 16px;
       border-radius: 4px;
       padding: 1.5%;

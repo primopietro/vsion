@@ -60,6 +60,7 @@ const _create = async function() {
 
     // hooks
     console.log('DatabaseService: add hooks');
+    /*
     db.collections.transactions.preInsert(function(docObj) {
         const color = docObj.color;
         return db.collections.transactions.findOne({
@@ -72,7 +73,7 @@ const _create = async function() {
             return db;
         });
     });
-
+    */
     // sync
     console.log('DatabaseService: sync');
     db.transactions.sync({

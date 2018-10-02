@@ -1,11 +1,13 @@
 <template>
 <div class="heroes-list">
+    <h4>Total : {{total}}</h4>
+    <h4>Average : {{avg}}</h4>
+    <h4>Nb transactions : {{counter}}</h4>
     <ul v-if="results">
         <li v-for="transaction in results">
-            <div class="color-box" v-bind:style="{ backgroundColor: transaction.color }"></div>
-            <span class="transaction-name">{{ transaction.name }}</span>
+            <span class="transaction-name">{{ transaction.name }}, {{ transaction.hp }} </span>
             <div class="life">
-                <div class="currentPercent" v-bind:style="{ width: transaction.hpPercent() +'%' }"></div>
+                <div class="currentPercent" v-bind:style="{ width:avg/transaction.hp  +'%' }"></div>
             </div>
             <div class="actions">
             <!--    <i class="fa fa-pencil-square-o" aria-hidden="true" v-on:click="editTransaction(transaction)"></i> -->
@@ -29,7 +31,10 @@ export default Vue.component('transaction-list', {
     data: () => {
         return {
             results: [],
-            subs: []
+            subs: [],
+            avg:0,
+            total:0,
+            counter:0
         };
     },
     mounted: async function() {
@@ -43,6 +48,23 @@ export default Vue.component('transaction-list', {
                 console.log('results:');
                 //                console.dir(results);
                 this.results = results;
+
+                if(results.length>=0){
+                     this.counter = results.length;
+                     var counter = 0;
+                     var total =0;
+                    results.forEach(function(entry) {
+                        counter++;
+                        total += entry.hp;
+                    });
+
+                    this.counter = counter;
+                    this.total = total;
+                    this.avg = Math.round(this.total/this.counter* 100) / 100;
+
+                    this.total = Math.round(total*100) / 100;;
+                }
+                   
             })
         );
     },
