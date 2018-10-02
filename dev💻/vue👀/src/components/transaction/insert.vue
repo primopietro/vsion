@@ -12,7 +12,7 @@
 
 <script>
 import Vue from 'vue';
-import * as Database from '../../database/Database';
+import * as Database from '../../database/DatabaseTransactions';
 import * as randomInt from 'random-int';
 
 export default Vue.component('transaction-insert', {
