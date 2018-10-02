@@ -1,0 +1,47 @@
+{
+  "name": "rxdb-example-vuejs",
+  "description": "A Vue.js project together with RxDB",
+  "version": "1.0.0",
+  "author": "pubkey",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src",
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "server": "pouchdb-server --host 0.0.0.0 -p 10101 -m -d /tmp/pouchdb-server/ -n true",
+    "build": "cross-env NODE_ENV=production webpack --hide-modules",
+    "postbuild": "node afterBuild.js",
+    "build:serve": "ws -p 8888 -d dist/",
+    "test:run": "testcafe chromium test/ --selector-timeout 30000",
+    "test": "concurrently \"npm run build:serve \" \"npm run test:run\" --kill-others --success first"
+  },
+  "dependencies": {
+    "concurrently": "4.0.1",
+    "ncp": "^2.0.0",
+    "pouchdb-adapter-http": "7.0.0",
+    "pouchdb-adapter-idb": "7.0.0",
+    "pouchdb-server": "2.3.7",
+    "random-int": "1.0.0",
+    "rxjs": "6.3.1",
+    "vue": "2.5.17"
+  },
+  "devDependencies": {
+    "async-test-util": "1.6.1",
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.2",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-latest": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "cross-env": "5.2.0",
+    "css-loader": "0.28.9",
+    "eslint": "5.5.0",
+    "file-loader": "1.1.6",
+    "local-web-server": "2.6.0",
+    "testcafe": "0.21.1",
+    "vue-loader": "13.7.0",
+    "vue-template-compiler": "2.5.17",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.11.0"
+  }
+}
